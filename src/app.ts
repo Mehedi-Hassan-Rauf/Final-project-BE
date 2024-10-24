@@ -18,6 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsConfig));
 dotenv.config();
 
+// Test route
+app.get("/", (req, res) => {
+    res.json("Hello");
+});
+
 // for user authentication 
 app.use((req: any, res: any, next: any) => {
   const authHeader = req.get(AUTHORISATION);
