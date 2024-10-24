@@ -8,7 +8,7 @@ export const corsConfig = {
     "x-auth-token"
   ],
   maxAge: 86400, // NOTICE: 1 day
-  credentials: false
+  credentials: true
 };
 
 export const enum REQUEST_SUCCESS_MESSAGE {
