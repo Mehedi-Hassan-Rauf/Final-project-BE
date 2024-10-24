@@ -1,6 +1,6 @@
 
 export const corsConfig = {
-  origin: '*',
+  origin: 'https://final-project-fe-psi.vercel.app',
   allowedHeaders: [
     "Authorization",
     "X-Requested-With",
