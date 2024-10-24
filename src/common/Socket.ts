@@ -4,8 +4,14 @@ let io: any;
 
 export const init = (httpServer: any) => {
   io = new Server(httpServer, {
-    cors: corsConfig
+    // cors: corsConfig
+    cors: {
+      origin: 'https://final-project-fe-psi.vercel.app',  // Frontend URL
+      methods: ["GET", "POST"],
+      credentials: true  
+    }
   });
+  
   return io;
 }
 
