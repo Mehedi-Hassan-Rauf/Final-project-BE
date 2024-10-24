@@ -7,6 +7,7 @@ import { corsConfig, REQUEST_FAILURE_MESSAGES, REQUEST_SUCCESS_MESSAGE, SECRET_K
 import cors from "cors";
 import mongoose from 'mongoose';
 import { logger } from './common/pino';
+import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 
 const AUTHORISATION = "Authorization";
@@ -15,6 +16,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsConfig));
+dotenv.config();
 
 // for user authentication 
 app.use((req: any, res: any, next: any) => {
@@ -50,7 +52,7 @@ app.use(questionsRouter);
 //collecting user responses
 app.use(userResponseRouter);
 
-mongoose.connect("mongodb+srv://raufnx:8e8nbXCtQ3VRD2hZ@cluster0.snupj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URL?process.env.MONGO_URL:"")
   .then(() => {
     logger.info(REQUEST_SUCCESS_MESSAGE.DATABASE_CONNECTED_SUCCESSFULLY);
     const server = app.listen(process.env.PORT || 9000, () => {
